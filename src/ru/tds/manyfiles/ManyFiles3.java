@@ -9,6 +9,7 @@ import java.io.*;
  * @author Trushenkov Dmitry 15ОИТ18.
  */
 public class ManyFiles3 {
+
     public static void main(String[] args) throws IOException {
         DataInputStream reader = new DataInputStream(new FileInputStream(new File("int6data.dat")));
         BufferedWriter writer = new BufferedWriter(new FileWriter(new File("txt6data.txt")));
@@ -24,7 +25,7 @@ public class ManyFiles3 {
     }
 
     /**
-     * Метод для проверки числа на то, является ли число счастливым билетом.
+     * Метод для проверки числа на то, является ли число счастливым номером.
      *
      * @param number число
      * @return true, если сумма левых 3-х цифр равна сумме правых 3-х цифр.
