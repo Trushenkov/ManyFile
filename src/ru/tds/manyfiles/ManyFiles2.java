@@ -9,13 +9,12 @@ import java.io.*;
  */
 public class ManyFiles2 {
     public static void main(String[] args) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(new File("int6data.dat")));
-        BufferedReader reader = new BufferedReader(new FileReader(new File("intdata.txt")));
-        for (int i = 1; i < 12; i++) {
-            String number = reader.readLine();
+        DataOutputStream writer = new DataOutputStream(new FileOutputStream(new File("int6data.dat")));
+        DataInputStream reader = new DataInputStream(new FileInputStream(new File("intdata.dat")));
+        for (int i = 1; i < 14 ; i++) {
+            int number = reader.readInt();
             if (isCheck(number)) {
-                writer.write(number);
-                writer.write("\r\n");
+                writer.writeInt(number);
             }
         }
         reader.close();
@@ -26,9 +25,9 @@ public class ManyFiles2 {
      * Метод для проверки и выбора из исходного файла целых чисел только четырех, пяти и шестихначных чисел.
      *
      * @param number число
-     * @return четырех, пяти или шестизначное число
+     * @return четырехзначное, пятизначное или шестизначное число
      */
-    private static boolean isCheck(String number) {
-        return (Integer.parseInt(number) < 1000000 && (Integer.parseInt(number) > 999));
+    private static boolean isCheck(int number) {
+        return number < 1000000 && number > 999;
     }
 }
