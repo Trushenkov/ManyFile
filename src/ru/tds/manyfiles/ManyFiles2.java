@@ -11,7 +11,7 @@ public class ManyFiles2 {
     public static void main(String[] args) throws IOException {
         DataOutputStream writer = new DataOutputStream(new FileOutputStream(new File("int6data.dat")));
         DataInputStream reader = new DataInputStream(new FileInputStream(new File("intdata.dat")));
-        for (int i = 1; i < 14 ; i++) {
+        while (reader.available() > 0) {
             int number = reader.readInt();
             if (isCheck(number)) {
                 writer.writeInt(number);
