@@ -12,9 +12,9 @@ public class ManyFiles3 {
     public static void main(String[] args) throws IOException {
         DataInputStream reader = new DataInputStream(new FileInputStream(new File("int6data.dat")));
         BufferedWriter writer = new BufferedWriter(new FileWriter(new File("txt6data.txt")));
-        for (int i = 1; i < 13; i++) {
+        while (reader.available() > 0) {
             int number = reader.readInt();
-            if (isLuckyTicket(number)) {
+            if (isCheckup(number)) {
                 writer.write(String.valueOf(number));
                 writer.write("\r\n");
             }
@@ -29,15 +29,18 @@ public class ManyFiles3 {
      * @param number число
      * @return true, если сумма левых 3-х цифр равна сумме правых 3-х цифр.
      */
-    private static boolean isLuckyTicket(int number) {
-        int number1 = number / 100000;
-        int number2 = number / 10000 % 10;
-        int number3 = number / 1000 % 10 % 10;
-        int number4 = number / 100 % 10 % 10 % 10;
-        int number5 = number / 10 % 10 % 10 % 10 % 10;
-        int number6 = number % 10 % 10 % 10 % 10;
-        int sum1 = number1 + number2 + number3;
-        int sum2 = number4 + number5 + number6;
-        return (sum1 == sum2);
+    private static boolean isCheckup(int number) {
+        return sum(number / 1000) == sum(number % 1000);
+    }
+
+    /**
+     * Метод, который считает сумму трех чисел
+     *
+     * @param number трехзначое число
+     * @return сумма чисел трехзначного числа
+     */
+    private static int sum(int number) {
+        return number%10 + number/10%10 + number/100%10;
     }
 }
+
